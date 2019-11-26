@@ -1,0 +1,32 @@
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <title>Course List</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+</head>
+<body>
+    <div class="content container">
+        <header class="page-header" style="overflow: auto;">
+            <h1 style="display: inline;">Course List</h1>
+            <a class="btn btn-default" href="/course/new" style="float: right;">New Course</a>
+        </header>
+        <div class="row">
+            <div class="col-md-12">
+                {% for course in course_list %}
+                    <a href="/course/{{ course.id }}">
+                        <h4>{{ course.title }}</h4>
+                        <h4>
+                            {% if course.price == 0 %}
+                                무료
+                            {% else %}
+                                {{ course.price }}
+                            {% endif %}
+                        </h4>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
